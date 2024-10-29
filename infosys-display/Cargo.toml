@@ -7,4 +7,8 @@ authors = ["Liam Middlebrook <liammiddlebrook@gmail.com>"]
 chrono = "0.4.38"
 config = "0.6"
 futures = "0.3.31"
-sqlx = { version = "0.8.2", features = ["chrono", "postgres", "runtime-tokio"] }
+sqlx = { version = "0.8.2", features = [
+  "chrono",
+  "postgres",
+  "runtime-async-std",
+] }

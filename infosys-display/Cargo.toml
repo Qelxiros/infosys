@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["Liam Middlebrook <liammiddlebrook@gmail.com>"]
 
 [dependencies]
-chrono = "0.3"
+chrono = "0.4.38"
 config = "0.6"
-postgres = {version = "0.14", features = ["with-chrono", "with-native-tls"]}
+futures = "0.3.31"
+sqlx = { version = "0.8.2", features = ["chrono", "postgres", "runtime-tokio"] }

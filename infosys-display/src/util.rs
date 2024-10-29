@@ -2,22 +2,17 @@ extern crate chrono;
 
 use bb::*;
 
-use self::chrono::naive::time::NaiveTime;
+use self::chrono::NaiveTime;
 use self::chrono::Timelike;
 
 pub fn get_naivetime_now() -> NaiveTime {
     let curtime = chrono::prelude::Local::now();
 
-    return NaiveTime::from_hms(
-        curtime.hour(),
-        curtime.minute(),
-        curtime.second());
+    NaiveTime::from_hms(curtime.hour(), curtime.minute(), curtime.second())
 }
 
-
 // Parser for Input Strings into BB strings
-#[derive(PartialEq)]
-#[derive(Debug)]
+#[derive(PartialEq, Debug)]
 enum ParserState {
     Normal,
     EscapeCatch,
@@ -78,7 +73,7 @@ pub fn tuple_to_bytestring(input: (String, String)) -> (Vec<u8>, Vec<u8>) {
     // string parse
     str_vec.extend(parse_string_to_infosys_blob(input.1.as_ref()));
 
-    return (mode_vec, str_vec);
+    (mode_vec, str_vec)
 }
 
 fn parse_string_to_infosys_blob(input: &str) -> Vec<u8> {
@@ -141,12 +136,12 @@ fn parse_string_to_infosys_blob(input: &str) -> Vec<u8> {
         out_vec.push(c as u8);
     }
 
-    return out_vec;
+    out_vec
 }
 
 fn split_octet_to_u8(inn: &String) -> Vec<u8> {
     let mut out_vec: Vec<u8> = Vec::new();
-    let mut input: String =inn.clone();
+    let mut input: String = inn.clone();
     while input.len() > 0 {
         let mut p1: u8 = (input.remove(0) as u8) - 48;
         let mut p2: u8 = (input.remove(0) as u8) - 48;
@@ -156,10 +151,10 @@ fn split_octet_to_u8(inn: &String) -> Vec<u8> {
         if p2 > 9 {
             p2 -= 7;
         }
-        let total: u8 = p1* 16 + p2;
+        let total: u8 = p1 * 16 + p2;
         out_vec.push(total);
     }
-    return out_vec;
+    out_vec
 }
 
 pub fn convert_to_vec8(input: Vec<(Vec<u8>, Vec<u8>)>) -> Vec<u8> {
@@ -169,5 +164,5 @@ pub fn convert_to_vec8(input: Vec<(Vec<u8>, Vec<u8>)>) -> Vec<u8> {
         out_vec.extend(write_text(pair.0.as_slice(), pair.1, start));
         start = false;
     }
-    return out_vec;
+    out_vec
 }

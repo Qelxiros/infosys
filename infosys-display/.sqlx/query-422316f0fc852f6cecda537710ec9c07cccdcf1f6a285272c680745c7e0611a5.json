@@ -1,0 +1,22 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT message_id FROM schedule\n        WHERE timeslot<=$1\n        ORDER BY timeslot\n        DESC LIMIT 1",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "message_id",
+        "type_info": "Int4"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Time"
+      ]
+    },
+    "nullable": [
+      false
+    ]
+  },
+  "hash": "422316f0fc852f6cecda537710ec9c07cccdcf1f6a285272c680745c7e0611a5"
+}
